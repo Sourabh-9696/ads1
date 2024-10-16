@@ -1,0 +1,29 @@
+CREATE TABLE Employee (
+    employee_id NUMBER PRIMARY KEY,
+    first_name VARCHAR2(50),
+    last_name VARCHAR2(50), 
+    status VARCHAR2(20) DEFAULT 'not modified'
+);
+INSERT INTO Employee (employee_id, first_name, last_name) VALUES
+(1, 'John', 'Doe'),
+(2, 'Jane', 'Smith'),
+(3, 'Alice', 'Johnson');
+
+
+COLUMN first_name FORMAT A15;
+COLUMN last_name FORMAT A15;
+COLUMN status FORMAT A15;
+
+SELECT*FROM Employee;
+
+CREATE OR REPLACE TRIGGER update_status
+BEFORE UPDATE ON Employee
+FOR EACH ROW
+BEGIN
+    :NEW.status := 'modified';
+END;
+/
+UPDATE Employee
+SET first_name = 'Johnny'
+WHERE employee_id = 1;
+SELECT * FROM Employee;

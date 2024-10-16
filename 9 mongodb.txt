@@ -1,0 +1,15 @@
+db.createCollection("CSE")
+db.CSE.insertMany([
+  {id:1,name:'Aarav'},
+{id:2,name:'Parv'},
+{id:3,name:'Vivan'},
+{id:4,name:'Aarush'}
+]);
+db.CSE.find()
+db.CSE.update({name:'Parv'},{$set:{name:'Aarjav'}});
+db.CSE.find()
+db.CSE.deleteOne({name:'Aarush'})
+db.CSE.find()
+use blog
+db.CSE.insertOne({id:1,name:'Aarav'})
+db.CSE.find()

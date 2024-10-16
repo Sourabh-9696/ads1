@@ -1,0 +1,47 @@
+create table customers 
+(  id int,
+   name varchar(20),
+   age int,
+   address varchar(20), 
+   salary int
+   );
+   
+insert into customers (id,name,age,address,salary) values (1,'ram',34,'danoli',3000); 
+insert into customers (id,name,age,address,salary) values (2,'sham',30,'jaysingpur',3000); 
+insert into customers (id,name,age,address,salary) values (3,'lakhan',35,'kothali',7000); 
+insert into customers (id,name,age,address,salary) values (4,'ramesh',29,'shirol',5000); 
+insert into customers (id,name,age,address,salary) values (5,'seeta',26,'danoli',6000); 
+select * from customers;
+
+DECLARE   
+   total_rows number(2);  
+BEGIN  
+   UPDATE  customers  
+   SET salary = salary + 5000;  
+   IF sql%notfound THEN  
+      dbms_output.put_line('no customers updated');  
+   ELSIF sql%found THEN  
+      total_rows := sql%rowcount;  
+      dbms_output.put_line( total_rows || ' customers updated ');  
+   END IF;   
+END;  
+/  
+
+select * from customers;
+
+DECLARE  
+   c_id customers.id%type;  
+   c_name customers.name%type;  
+   c_addr customers.address%type;  
+   CURSOR c_customers is  
+      SELECT id, name, address FROM customers;  
+BEGIN  
+   OPEN c_customers;  
+   LOOP  
+      FETCH c_customers into c_id, c_name, c_addr;  
+      EXIT WHEN c_customers%notfound;  
+      dbms_output.put_line(c_id || ' ' || c_name || ' ' || c_addr);  
+   END LOOP;  
+   CLOSE c_customers;  
+END;  
+/  

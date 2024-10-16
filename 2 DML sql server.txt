@@ -1,0 +1,40 @@
+CREATE TABLE Employees (
+EmployeeID INT,
+FirstName VARCHAR(20),
+LastName VARCHAR(25),
+Department VARCHAR(25),
+PASSOUT_YEAR INT,
+salary int
+);
+
+
+
+
+INSERT INTO Employees (EmployeeID, FirstName, LastName, Department,PASSOUT_YEAR,salary)
+VALUES (1, 'AKANKSHA', 'GAIKWAD', 'IT',2024,10000);
+
+INSERT INTO Employees (EmployeeID, FirstName, LastName, Department,PASSOUT_YEAR,salary)
+VALUES (2, 'ARYAN', 'CHOUGULE', 'CSE',2024,20000);
+
+INSERT INTO Employees (EmployeeID, FirstName, LastName, Department,PASSOUT_YEAR,salary)
+VALUES (3, 'RUTUJA', 'AWALE', 'CIVIL',2023,30000);
+
+INSERT INTO Employees (EmployeeID, FirstName, LastName, Department,PASSOUT_YEAR,salary)
+VALUES (4, 'SANIKA', 'MOHITE', 'MECH',2024,40000);
+
+INSERT INTO Employees (EmployeeID, FirstName, LastName, Department,PASSOUT_YEAR,salary)
+VALUES (5, 'RITESH', 'PATIL', 'ETC',2023,34000);
+
+select*from Employees
+
+UPDATE Employees
+SET Salary = 50000
+WHERE EmployeeID = 1;
+
+SELECT*FROM Employees;
+
+DELETE FROM Employees
+WHERE EmployeeID = 5;
+
+SELECT*FROM Employees;
+

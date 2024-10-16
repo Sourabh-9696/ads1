@@ -1,0 +1,30 @@
+CREATE TABLE Stores (
+    store_id INT NOT NULL,
+    store_name VARCHAR(40) NOT NULL,
+    city VARCHAR(10) NOT NULL,
+    PRIMARY KEY (store_id)
+)
+PARTITION BY LIST (store_id) (
+    PARTITION pAtlanta VALUES IN (1, 2, 3),
+    PARTITION pHouston VALUES IN (4, 5, 6),
+    PARTITION pBoston VALUES IN (7, 8, 9)
+);
+INSERT INTO Stores (store_id, store_name, city) VALUES
+(1, 'Atlanta Store 1', 'Atlanta'),
+(2, 'Atlanta Store 2', 'Atlanta'),
+(3, 'Atlanta Store 3', 'Atlanta'),
+(4, 'Houston Store 1', 'Houston'),
+(5, 'Houston Store 2', 'Houston'),
+(6, 'Houston Store 3', 'Houston'),
+(7, 'Boston Store 1', 'Boston'),
+(8, 'Boston Store 2', 'Boston'),
+(9, 'Boston Store 3', 'Boston');
+select * from Stores;
+
+SELECT partition_name, table_rows
+FROM information_schema.partitions
+WHERE table_name = 'Stores';
+
+select * from Stores where store_id in (1,2,3);
+select * from Stores where store_id in (4,5,6);
+select * from Stores where store_id in (7,8,9);

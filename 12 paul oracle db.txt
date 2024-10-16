@@ -1,0 +1,39 @@
+CREATE TABLE salesman (
+    salesman_id NUMBER PRIMARY KEY,
+    name VARCHAR2(50),
+    city VARCHAR2(50),
+    commission NUMBER
+);
+
+CREATE TABLE orders (
+    ord_no NUMBER PRIMARY KEY,
+    purch_amt NUMBER,
+    ord_date DATE,
+    customer_id NUMBER,
+    salesman_id NUMBER
+);
+INSERT INTO salesman (salesman_id, name, city, commission) VALUES
+(5001, 'James Hoog', 'New York', 0.15),
+(5002, 'Nail Knite', 'Paris', 0.13),
+(5005, 'Pit Alex', 'London', 0.11),
+(5006, 'Mc Lyon', 'Paris', 0.14),
+(5007, 'Paul Adam', 'Rome', 0.13),
+(5003, 'Lauson Hen', 'San Jose', 0.12);
+
+INSERT INTO orders (ord_no, purch_amt, ord_date, customer_id, salesman_id) VALUES
+(70001, 150.5, TO_DATE('2012-10-25', 'YYYY-MM-DD'), 3005, 5002),
+(70009, 270.65, TO_DATE('2012-09-11', 'YYYY-MM-DD'), 3001, 5005),
+(70002, 65.26, TO_DATE('2012-04-17', 'YYYY-MM-DD'), 3002, 5001),
+(70004, 110.5, TO_DATE('2012-05-02', 'YYYY-MM-DD'), 3009, 5003),
+(70007, 948.5, TO_DATE('2012-11-20', 'YYYY-MM-DD'), 3005, 5002),
+(70005, 2400.6, TO_DATE('2012-03-21', 'YYYY-MM-DD'), 3007, 5001),
+(70008, 250.45, TO_DATE('2012-07-15', 'YYYY-MM-DD'), 3002, 5006),
+(70011, 75.29, TO_DATE('2012-04-25', 'YYYY-MM-DD'), 3003, 5007);
+
+SELECT ord_no, purch_amt, ord_date, customer_id, salesman_id
+FROM orders
+WHERE salesman_id = (
+    SELECT salesman_id 
+    FROM salesman 
+    WHERE name = 'Paul Adam'
+);

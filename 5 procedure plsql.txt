@@ -1,0 +1,27 @@
+create table customers 
+(  id int,
+   name varchar(20),
+   age int,
+   address varchar(20), 
+   salary int
+   );
+   
+insert into customers (id,name,age,address,salary) values (1,'ram',34,'danoli',3000); 
+insert into customers (id,name,age,address,salary) values (2,'sham',30,'jaysingpur',3000); 
+insert into customers (id,name,age,address,salary) values (3,'lakhan',35,'kothali',7000); 
+insert into customers (id,name,age,address,salary) values (4,'ramesh',29,'shirol',5000); 
+insert into customers (id,name,age,address,salary) values (5,'seeta',26,'danoli',6000); 
+select * from customers;
+
+create or replace procedure Test
+as 
+begin
+update customers 
+set salary=5000 where address='danoli';
+END;
+/
+
+EXEC Test;
+
+select * from customers;
+
